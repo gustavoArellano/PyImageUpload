@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>PyTestApp</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            body {
+                padding: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Py Testing</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+
+        <h5>REGISTER</h5>
+        
+        <form action='/registerProcess' method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Confirm Password</label>
+                <input name="confirmPassword" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <br><br><br>
+        <h5>LOGIN</h5>
+        
+        <form action="/loginProcess" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email</label>
+              <input name="loginEmail" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input name="loginPassword" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+        
+    </body>
+</html>
