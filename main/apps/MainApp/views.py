@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.conf import settings
@@ -66,20 +66,16 @@ def logout(request):
     return redirect('/')
 
 def ImageUpload(request):
-    thisUser = request.session['userId']
-    
-    image = {
-        'image': request.POST['imageUpload']
-    }
+    if request.method == 'POST':
+        thisUser = request.session['userId']
+        upload = {
+            'image': request.POST['image']
+        }
+        User.objects.filter(id = thisUser).update(**upload)
+        print('***SUCCESS***')
 
-    User.objects.filter(id = thisUser).update(**image)
-    print('***SUCCESS***')
+        uploadedImage = User.objects.get(image = request.POST['image'])
+        print('***************')
+        print(uploadedImage)
 
-    
-    print(thisUser)
-
-    uploadedImage = User.objects.get(image = request.POST['imageUpload'])
-    print('***************')
-    print(uploadedImage)
-
-    return redirect('/home')
+        return redirect('/home')

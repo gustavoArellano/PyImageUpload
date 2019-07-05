@@ -49,7 +49,7 @@ class UserManager(models.Manager):
         return errors
 
 class User(models.Model): 
-    image = models.ImageField(upload_to='/Users/gustavo/Documents/Coding Random Stuff/PyTestApp/main/apps/MainApp/media/images/', blank=True)
+    image = models.ImageField(upload_to = 'images/', blank=True)
     name = models.CharField(max_length = 20) 
     email = models.CharField(max_length = 255)
     password = models.CharField(max_length = 255, default = True)

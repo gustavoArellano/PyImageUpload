@@ -6,17 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Home</title>
         {% load static %}
+        <link rel="stylesheet" href="{% static './css/home.css' %}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <style>
-            body {
-                padding: 20px;
-            }
-
-            img {
-                width: 100px;
-                height: 100px;
-            }
-        </style>
     </head>
 
     <body>
@@ -27,19 +18,43 @@
 
         <h1>Welcome, {{thisUser.name}}!</h1>
 
-        <img src="{{ thisUser.image.url }}" alt="">
-
+        <div class="image">
+            <img src="{{ thisUser.image.url }}" alt="">
+        </div>
         <form action="/ImageUpload" method="POST">
             {% csrf_token %}
-            <input name="imageUpload" id="image" type="file">
+            <input name="image" type="file">
             <button type="submit" class="btn btn-danger">Upload</button>
         </form>
 
         <h4>List Of Users: </h4>
         <ul>
             {% for user in allUsers %}
+            {% if user.name != request.session.name %}
             <li>{{user.name}}</li>
+            {% endif %}
             {% endfor %}
         </ul>
+
+
+        <button id="upload_widget" class="cloudinary-button">Upload files</button>
+
+        <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>  
+
+        <script type="text/javascript">  
+            var myWidget = cloudinary.createUploadWidget({
+            cloudName: 'my_cloud_name', 
+            uploadPreset: 'my_preset'}, (error, result) => { 
+                if (!error && result && result.event === "success") { 
+                console.log('Done! Here is the image info: ', result.info); 
+                }
+            }
+            )
+
+            document.getElementById("upload_widget").addEventListener("click", function(){
+                myWidget.open();
+            }, false);
+        </script>
+
     </body>
 </html>

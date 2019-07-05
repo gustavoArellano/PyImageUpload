@@ -12,6 +12,3 @@ urlpatterns = [
     url(r'^logout$', views.logout, name = 'logout'),
     url(r'^ImageUpload$', views.ImageUpload, name="ImageUpload")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-if settings.DEBUG: # new
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
