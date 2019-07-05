@@ -126,7 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'MainApp')
 
 # STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media', 'images')
+MEDIA_ROOT = '/Users/gustavo/Documents/Coding Random Stuff/PyTestApp/main/apps/MainApp/media'
 MEDIA_URL = '/Users/gustavo/Documents/Coding Random Stuff/PyTestApp/main/apps/MainApp/media/images/'
 # MEDIA_URL = '/media/'
 

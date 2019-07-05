@@ -21,9 +21,9 @@
         <div class="image">
             <img src="{{ thisUser.image.url }}" alt="">
         </div>
-        <form action="/ImageUpload" method="POST">
+        <form action="/ImageUpload" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <input name="image" type="file">
+            <input name="myImage" type="file">
             <button type="submit" class="btn btn-danger">Upload</button>
         </form>
 

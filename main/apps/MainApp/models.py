@@ -5,6 +5,9 @@ import re
 from datetime import datetime
 from time import strftime
 from django import forms
+from django.conf import settings
+
+
 
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -49,7 +52,7 @@ class UserManager(models.Manager):
         return errors
 
 class User(models.Model): 
-    image = models.ImageField(upload_to = 'images/', blank=True)
+    image = models.ImageField(upload_to = 'Users/gustavo/Documents/Coding Random Stuff/PyTestApp/main/apps/MainApp/media', blank=True)
     name = models.CharField(max_length = 20) 
     email = models.CharField(max_length = 255)
     password = models.CharField(max_length = 255, default = True)

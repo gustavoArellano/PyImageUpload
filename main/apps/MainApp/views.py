@@ -7,6 +7,8 @@ from .models import User
 from django import template
 from django.conf import settings
 import bcrypt
+from django.core.files.storage import FileSystemStorage
+
 
 
 
@@ -66,16 +68,16 @@ def logout(request):
     return redirect('/')
 
 def ImageUpload(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES['myImage']:
         thisUser = request.session['userId']
-        upload = {
-            'image': request.POST['image']
-        }
-        User.objects.filter(id = thisUser).update(**upload)
+        myImage = request.FILES['myImage']
+        fs = FileSystemStorage()
+        imageUploaded = fs.save(myImage.name, myImage)
+
+        User.objects.filter(id = thisUser).update(image = imageUploaded)
         print('***SUCCESS***')
 
-        uploadedImage = User.objects.get(image = request.POST['image'])
+        # uploadedImage = User.objects.get(image = request.POST['image'])
         print('***************')
-        print(uploadedImage)
 
         return redirect('/home')
